@@ -1,0 +1,245 @@
+/* ============================================================
+   Firefox 153 Compact Minimal Theme
+   NixOS / Linux
+   ============================================================ */
+
+
+/* ============================================================
+   Tabs below URL bar
+   ============================================================ */
+
+#navigator-toolbox {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#nav-bar {
+    order: 0 !important;
+}
+
+#TabsToolbar {
+    order: 1 !important;
+}
+
+
+/* ============================================================
+   Global compact variables
+   ============================================================ */
+
+:root {
+    --tab-min-height: 27px !important;
+}
+
+
+/* ============================================================
+   URL BAR
+   ============================================================ */
+
+#nav-bar {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: 30px !important;
+}
+
+#urlbar-container {
+    padding-block: 0 !important;
+}
+
+#urlbar {
+    min-height: 27px !important;
+}
+
+#urlbar-input {
+    font-size: 12px !important;
+}
+
+
+/* URL bar background */
+
+#urlbar-background {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+/* ============================================================
+   Toolbar buttons
+   Only navigation buttons
+   ============================================================ */
+
+#back-button,
+#forward-button,
+#reload-button,
+#stop-reload-button {
+    opacity: 1 !important;
+}
+
+
+#back-button .toolbarbutton-icon,
+#forward-button .toolbarbutton-icon,
+#reload-button .toolbarbutton-icon,
+#stop-reload-button .toolbarbutton-icon {
+    opacity: 1 !important;
+}
+
+
+/* Compact buttons without hiding icons */
+
+#nav-bar toolbarbutton {
+    padding: 2px !important;
+}
+
+
+/* ============================================================
+   Tabs
+   ============================================================ */
+
+#TabsToolbar {
+    min-height: 27px !important;
+    padding: 0 !important;
+}
+
+
+.tabbrowser-tab {
+    min-height: 27px !important;
+    padding-inline: 1px !important;
+}
+
+
+/* remove Firefox tab borders */
+
+.tab-background {
+    border: none !important;
+    box-shadow: none !important;
+
+    margin: 2px !important;
+}
+
+
+/* ============================================================
+   Active tab
+   Monochrome, no underline
+   ============================================================ */
+
+.tabbrowser-tab[selected="true"] .tab-background {
+    background: rgba(255,255,255,0.08) !important;
+}
+
+
+.tabbrowser-tab[selected="true"] .tab-label {
+    color: #ffffff !important;
+}
+
+
+/* inactive tabs */
+
+.tabbrowser-tab:not([selected="true"]) .tab-label {
+    opacity: .65 !important;
+}
+
+
+/* favicon only */
+
+.tabbrowser-tab .tab-icon-image {
+    filter: grayscale(100%) !important;
+}
+
+
+/* remove tab separators */
+
+.tabbrowser-tab::before,
+.tabbrowser-tab::after {
+    display: none !important;
+}
+
+
+/* ============================================================
+   Hide unnecessary elements
+   ============================================================ */
+
+#alltabs-button {
+    display: none !important;
+}
+
+
+#new-tab-button,
+#tabs-newtab-button {
+    display: none !important;
+}
+
+
+.tab-close-button {
+    display: none !important;
+}
+
+
+.titlebar-buttonbox {
+    display: none !important;
+}
+
+
+/* ============================================================
+   Bookmarks bar
+   ============================================================ */
+
+#PersonalToolbar {
+    min-height: 24px !important;
+}
+
+
+#PlacesToolbarItems > .bookmark-item {
+    padding-block: 1px !important;
+    font-size: 12px !important;
+}
+
+
+/* ============================================================
+   Clean separators
+   ============================================================ */
+
+#navigator-toolbox {
+    border-bottom: 1px solid rgba(255,255,255,.08) !important;
+}
+
+
+/* ============================================================
+   Remove rounded corners safely
+   Firefox 153
+   ============================================================ */
+
+/* URL bar */
+#urlbar-background,
+#urlbar-input-container {
+    border-radius: 0 !important;
+}
+
+/* Search bar */
+#searchbar {
+    border-radius: 0 !important;
+}
+
+/* Tabs */
+.tab-background,
+.tabbrowser-tab {
+    border-radius: 0 !important;
+}
+
+/* Toolbar buttons only */
+#nav-bar toolbarbutton,
+#nav-bar .toolbarbutton-1 {
+    border-radius: 0 !important;
+}
+
+/* Menus / panels */
+menupopup,
+panel {
+    --panel-border-radius: 0px !important;
+    border-radius: 0 !important;
+}
+
+/* Remove rounded highlight containers */
+#navigator-toolbox,
+#TabsToolbar,
+#nav-bar {
+    border-radius: 0 !important;
+}
