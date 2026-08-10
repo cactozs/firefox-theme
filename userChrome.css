@@ -1,12 +1,33 @@
-/* ============================================================
-   Firefox 153 Compact Minimal Theme
-   NixOS / Linux
-   ============================================================ */
+/* Firefox 153 */
 
+/* about:config base settings:
+toolkit.legacyUserProfileCustomizations.stylesheets true
+browser.tabs.fadeOutUnloadedTabs true
+browser.urlbar.trimHttps true
+browser.compactmode.show true
+*/
 
-/* ============================================================
-   Tabs below URL bar
-   ============================================================ */
+/* Only for the interface */
+#navigator-toolbox,
+#TabsToolbar,
+#nav-bar,
+#urlbar,
+#searchbar,
+#PersonalToolbar,
+#PanelUI-button,
+.tabbrowser-tab,
+.tab-label,
+.bookmark-item,
+menupopup,
+panel,
+toolbar,
+toolbarbutton,
+menuitem,
+menu {
+    font-family: monospace !important;
+}
+
+/* Put tabs below the URL */
 
 #navigator-toolbox {
     display: flex !important;
@@ -21,19 +42,18 @@
     order: 1 !important;
 }
 
-
-/* ============================================================
-   Global compact variables
-   ============================================================ */
+/* Global compact variables */
 
 :root {
-    --tab-min-height: 27px !important;
+    --tab-min-height: 24px !important;
 }
 
+/* URL BAR */
 
-/* ============================================================
-   URL BAR
-   ============================================================ */
+/* Center URL bar content when not focused */
+#urlbar:not([focused]) #urlbar-input {
+  text-align: center !important;
+}
 
 #nav-bar {
     padding-top: 0 !important;
@@ -46,13 +66,12 @@
 }
 
 #urlbar {
-    min-height: 27px !important;
+    min-height: 20px !important;
 }
 
 #urlbar-input {
     font-size: 12px !important;
 }
-
 
 /* URL bar background */
 
@@ -61,11 +80,7 @@
     box-shadow: none !important;
 }
 
-
-/* ============================================================
-   Toolbar buttons
-   Only navigation buttons
-   ============================================================ */
+/* Only navigation buttons */
 
 #back-button,
 #forward-button,
@@ -74,7 +89,6 @@
     opacity: 1 !important;
 }
 
-
 #back-button .toolbarbutton-icon,
 #forward-button .toolbarbutton-icon,
 #reload-button .toolbarbutton-icon,
@@ -82,29 +96,23 @@
     opacity: 1 !important;
 }
 
-
 /* Compact buttons without hiding icons */
 
 #nav-bar toolbarbutton {
     padding: 2px !important;
 }
 
-
-/* ============================================================
-   Tabs
-   ============================================================ */
+/* Tabs */
 
 #TabsToolbar {
     min-height: 27px !important;
     padding: 0 !important;
 }
 
-
 .tabbrowser-tab {
     min-height: 27px !important;
     padding-inline: 1px !important;
 }
-
 
 /* remove Firefox tab borders */
 
@@ -115,97 +123,98 @@
     margin: 2px !important;
 }
 
+/* Active tab Monochrome */
 
-/* ============================================================
-   Active tab
-   Monochrome, no underline
-   ============================================================ */
+.tabbrowser-tab[pending] .tab-icon-image,
+.tabbrowser-tab[discarded] .tab-icon-image {
+  filter: grayscale(1) !important;
+}
 
-.tabbrowser-tab[selected="true"] .tab-background {
+/*.tabbrowser-tab[selected="true"] .tab-background {
     background: rgba(255,255,255,0.08) !important;
 }
 
-
 .tabbrowser-tab[selected="true"] .tab-label {
     color: #ffffff !important;
-}
-
+}*/
 
 /* inactive tabs */
 
-.tabbrowser-tab:not([selected="true"]) .tab-label {
+/*.tabbrowser-tab:not([selected="true"]) .tab-label {
     opacity: .65 !important;
-}
-
-
-/* favicon only */
-
-.tabbrowser-tab .tab-icon-image {
+}*/
+/* Unactive tabs — monochrome */
+/*.tabbrowser-tab:not([selected="true"]):not([pinned="true"]) .tab-icon-image {
     filter: grayscale(100%) !important;
+}*/
+
+/* Active tab — colorful favicon */
+/*.tabbrowser-tab[selected="true"] .tab-icon-image {
+    filter: none !important;
+}*/
+
+/* Pinned tabs — colorful favicon */
+/*.tabbrowser-tab[pinned="true"] .tab-icon-image {
+    filter: none !important;
+}*/
+
+/* If tab is active and pinned — colorful */
+/*.tabbrowser-tab[pinned="true"][selected="true"] .tab-icon-image {
+    filter: none !important;
+}*/
+
+/* For pinned tabs */
+/*.tabbrowser-tab[pinned="true"] .tab-icon-stack .tab-icon-image {
+    filter: none !important;
 }
 
+.tabbrowser-tab[pinned="true"] .tab-icon-stack {
+    filter: none !important;
+}*/
 
 /* remove tab separators */
-
 .tabbrowser-tab::before,
 .tabbrowser-tab::after {
     display: none !important;
 }
 
-
-/* ============================================================
-   Hide unnecessary elements
-   ============================================================ */
+/* Hide unnecessary elements */
 
 #alltabs-button {
     display: none !important;
 }
-
 
 #new-tab-button,
 #tabs-newtab-button {
     display: none !important;
 }
 
-
 .tab-close-button {
     display: none !important;
 }
-
 
 .titlebar-buttonbox {
     display: none !important;
 }
 
-
-/* ============================================================
-   Bookmarks bar
-   ============================================================ */
+/* Bookmarks bar */
 
 #PersonalToolbar {
     min-height: 24px !important;
 }
-
 
 #PlacesToolbarItems > .bookmark-item {
     padding-block: 1px !important;
     font-size: 12px !important;
 }
 
-
-/* ============================================================
-   Clean separators
-   ============================================================ */
+/* Clean separators */
 
 #navigator-toolbox {
     border-bottom: 1px solid rgba(255,255,255,.08) !important;
 }
 
-
-/* ============================================================
-   Remove rounded corners safely
-   Firefox 153
-   ============================================================ */
+/* Remove rounded corners */
 
 /* URL bar */
 #urlbar-background,
@@ -230,7 +239,7 @@
     border-radius: 0 !important;
 }
 
-/* Menus / panels */
+/* Menus/panels */
 menupopup,
 panel {
     --panel-border-radius: 0px !important;
@@ -242,4 +251,27 @@ panel {
 #TabsToolbar,
 #nav-bar {
     border-radius: 0 !important;
+}
+
+#contentAreaContextMenu menuitem[label*="chosen Private"],
+#contentAreaContextMenu menu[label*="chosen Private"],
+#contentAreaContextMenu menuitem[label*="Open in chosen"],
+#contentAreaContextMenu menu[label*="Open in chosen"] {
+  -moz-box-ordinal-group: 1 !important;
+  order: -1 !important; /* for new Firefox versions */
+}
+
+#contentAreaContextMenu > * {
+  -moz-box-ordinal-group: 100;
+}
+
+/* square pinned tabs */
+.tabbrowser-tab[pinned] {
+  width: 32px;
+}
+.tabbrowser-tab[pinned] .tab-label {
+  display: none !important;
+}
+.tabbrowser-tab[pinned] .tab-content {
+  padding-inline: 8px !important;
 }
