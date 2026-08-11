@@ -1,22 +1,13 @@
-/* Firefox 153 */
-
-/* about:config base settings:
-toolkit.legacyUserProfileCustomizations.stylesheets true
-browser.tabs.fadeOutUnloadedTabs true
-browser.urlbar.trimHttps true
-browser.compactmode.show true
-*/
-
-/* Only for the interface */
+/* ============================================================
+   GLOBAL — monospace & compact variables
+   ============================================================ */
 #navigator-toolbox,
 #TabsToolbar,
 #nav-bar,
 #urlbar,
 #searchbar,
 #PersonalToolbar,
-#PanelUI-button,
 .tabbrowser-tab,
-.tab-label,
 .bookmark-item,
 menupopup,
 panel,
@@ -27,251 +18,148 @@ menu {
     font-family: monospace !important;
 }
 
-/* Put tabs below the URL */
+:root {
+    --tab-min-height: 24px !important;
+    --toolbar-min-height: 30px;
+    --urlbar-min-height: 20px;
+    --tabbar-min-height: 27px;
+    --bookmark-bar-height: 24px;
+}
 
+/* ============================================================
+   TOOLBOX LAYOUT — tabs below URL bar
+   ============================================================ */
 #navigator-toolbox {
     display: flex !important;
     flex-direction: column !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
 }
 
 #nav-bar {
-    order: 0 !important;
+    order: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: var(--toolbar-min-height);
 }
 
 #TabsToolbar {
-    order: 1 !important;
+    order: 1;
 }
 
-/* Global compact variables */
-
-:root {
-    --tab-min-height: 24px !important;
-}
-
-/* URL BAR */
-
-/* Center URL bar content when not focused */
+/* ============================================================
+   URL BAR — centered text, compact, no rounding
+   ============================================================ */
 #urlbar:not([focused]) #urlbar-input {
-  text-align: center !important;
-}
-
-#nav-bar {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    min-height: 30px !important;
+    text-align: center !important;
+    text-overflow: ellipsis;
 }
 
 #urlbar-container {
-    padding-block: 0 !important;
+    padding-block: 0;
 }
 
 #urlbar {
-    min-height: 20px !important;
+    min-height: var(--urlbar-min-height);
 }
 
 #urlbar-input {
-    font-size: 12px !important;
+    font-size: 12px;
 }
 
-/* URL bar background */
-
-#urlbar-background {
+#urlbar-background,
+#urlbar-input-container {
     border: none !important;
     box-shadow: none !important;
+    border-radius: 0 !important;
 }
 
-/* Only navigation buttons */
-
-#back-button,
-#forward-button,
-#reload-button,
-#stop-reload-button {
-    opacity: 1 !important;
-}
-
-#back-button .toolbarbutton-icon,
-#forward-button .toolbarbutton-icon,
-#reload-button .toolbarbutton-icon,
-#stop-reload-button .toolbarbutton-icon {
-    opacity: 1 !important;
-}
-
-/* Compact buttons without hiding icons */
-
+/* ============================================================
+   NAVIGATION BUTTONS — compact, keep icons
+   ============================================================ */
 #nav-bar toolbarbutton {
-    padding: 2px !important;
+    padding: 2px;
 }
 
-/* Tabs */
-
+/* ============================================================
+   TABS — compact, no borders, no separators, pinned square
+   ============================================================ */
 #TabsToolbar {
-    min-height: 27px !important;
-    padding: 0 !important;
+    min-height: var(--tabbar-min-height);
+    padding: 0;
 }
 
 .tabbrowser-tab {
-    min-height: 27px !important;
-    padding-inline: 1px !important;
+    min-height: var(--tabbar-min-height);
+    padding-inline: 1px;
+    border-radius: 0 !important;
 }
-
-/* remove Firefox tab borders */
 
 .tab-background {
     border: none !important;
     box-shadow: none !important;
-
-    margin: 2px !important;
+    margin: 2px;
+    border-radius: 0 !important;
 }
 
-/* Active tab Monochrome */
-
-.tabbrowser-tab[pending] .tab-icon-image,
-.tabbrowser-tab[discarded] .tab-icon-image {
-  filter: grayscale(1) !important;
-}
-
-/*.tabbrowser-tab[selected="true"] .tab-background {
-    background: rgba(255,255,255,0.08) !important;
-}
-
-.tabbrowser-tab[selected="true"] .tab-label {
-    color: #ffffff !important;
-}*/
-
-/* inactive tabs */
-
-/*.tabbrowser-tab:not([selected="true"]) .tab-label {
-    opacity: .65 !important;
-}*/
-/* Unactive tabs — monochrome */
-/*.tabbrowser-tab:not([selected="true"]):not([pinned="true"]) .tab-icon-image {
-    filter: grayscale(100%) !important;
-}*/
-
-/* Active tab — colorful favicon */
-/*.tabbrowser-tab[selected="true"] .tab-icon-image {
-    filter: none !important;
-}*/
-
-/* Pinned tabs — colorful favicon */
-/*.tabbrowser-tab[pinned="true"] .tab-icon-image {
-    filter: none !important;
-}*/
-
-/* If tab is active and pinned — colorful */
-/*.tabbrowser-tab[pinned="true"][selected="true"] .tab-icon-image {
-    filter: none !important;
-}*/
-
-/* For pinned tabs */
-/*.tabbrowser-tab[pinned="true"] .tab-icon-stack .tab-icon-image {
-    filter: none !important;
-}
-
-.tabbrowser-tab[pinned="true"] .tab-icon-stack {
-    filter: none !important;
-}*/
-
-/* remove tab separators */
 .tabbrowser-tab::before,
 .tabbrowser-tab::after {
     display: none !important;
 }
 
-/* Hide unnecessary elements */
-
-#alltabs-button {
-    display: none !important;
-}
-
+/* Hide unnecessary tab-related buttons */
+#alltabs-button,
 #new-tab-button,
-#tabs-newtab-button {
-    display: none !important;
-}
-
-.tab-close-button {
-    display: none !important;
-}
-
+#tabs-newtab-button,
+.tab-close-button,
 .titlebar-buttonbox {
     display: none !important;
 }
 
-/* Bookmarks bar */
+/* Pinned tabs: square, no label, custom padding */
+.tabbrowser-tab[pinned] {
+    min-width: 32px;
+    max-width: 32px;
+}
 
+.tabbrowser-tab[pinned] .tab-label {
+    display: none !important;
+}
+
+.tabbrowser-tab[pinned] .tab-content {
+    padding-inline: 8px !important;
+}
+
+/* ============================================================
+   BOOKMARKS BAR — compact
+   ============================================================ */
 #PersonalToolbar {
-    min-height: 24px !important;
+    min-height: var(--bookmark-bar-height);
 }
 
 #PlacesToolbarItems > .bookmark-item {
-    padding-block: 1px !important;
-    font-size: 12px !important;
+    padding-block: 1px;
+    font-size: 12px;
 }
 
-/* Clean separators */
-
-#navigator-toolbox {
-    border-bottom: 1px solid rgba(255,255,255,.08) !important;
-}
-
-/* Remove rounded corners */
-
-/* URL bar */
-#urlbar-background,
-#urlbar-input-container {
-    border-radius: 0 !important;
-}
-
-/* Search bar */
-#searchbar {
-    border-radius: 0 !important;
-}
-
-/* Tabs */
-.tab-background,
-.tabbrowser-tab {
-    border-radius: 0 !important;
-}
-
-/* Toolbar buttons only */
-#nav-bar toolbarbutton,
-#nav-bar .toolbarbutton-1 {
-    border-radius: 0 !important;
-}
-
-/* Menus/panels */
-menupopup,
-panel {
-    --panel-border-radius: 0px !important;
-    border-radius: 0 !important;
-}
-
-/* Remove rounded highlight containers */
-#navigator-toolbox,
-#TabsToolbar,
-#nav-bar {
-    border-radius: 0 !important;
-}
-
+/* ============================================================
+   CONTEXT MENU — reorder "chosen" entries to top
+   ============================================================ */
 #contentAreaContextMenu menuitem[label*="chosen Private"],
 #contentAreaContextMenu menu[label*="chosen Private"],
 #contentAreaContextMenu menuitem[label*="Open in chosen"],
 #contentAreaContextMenu menu[label*="Open in chosen"] {
-  -moz-box-ordinal-group: 1 !important;
-  order: -1 !important; /* for new Firefox versions */
+    order: -1 !important;
 }
 
 #contentAreaContextMenu > * {
-  -moz-box-ordinal-group: 100;
+    order: 100;
 }
 
-/* square pinned tabs */
-.tabbrowser-tab[pinned] {
-  width: 32px;
-}
-.tabbrowser-tab[pinned] .tab-label {
-  display: none !important;
-}
-.tabbrowser-tab[pinned] .tab-content {
-  padding-inline: 8px !important;
+/* ============================================================
+   REMOVE ALL ROUNDING FROM THE ENTIRE TOP TOOLBAR AREA
+   (includes extension panel, menu buttons, etc.)
+   ============================================================ */
+#navigator-toolbox,
+#navigator-toolbox * {
+    border-radius: 0 !important;
 }
